@@ -16,7 +16,7 @@ export default function page() {
     ///////////actual page
   return (
 
-    <div className='h-screen w-full bg-red-500'>
+    <div className='h-screen w-full '>
         Admiiiiiin       
     </div>
   )

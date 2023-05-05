@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div id='contact' className='w-screen pt-5 py-8 text-gray-300 flex flex-col items-center mt-52 bg-blue-900'>
+    <div id='contact' className='w-screen pt-5 py-8 text-gray-300 flex flex-col items-center mt-52 bg-[#2c3a51]'>
         <div className=' my-8 flex flex-col px-4 w-screen max-w-[65rem]'>
             <p className='text-lg font-bold'>Contact : </p>
         <ul className='ml-6 list-disc'>
