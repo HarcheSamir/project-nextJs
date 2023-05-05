@@ -1,94 +1,63 @@
 'use client'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const roles = {
-  employee: 0b0001,
-  responsable: 0b0010,
-  funder: 0b0100,
-  comptable: 0b1000,
-};
+export default function page() {
+  const [query, setQuery] = useState('');
+  const [accounts, setAccounts] = useState([]);
 
-const initialValues = {
-  bitmask: 0b0000,
-};
-
-const validate = (values) => {
-  const errors = {};
-  if (values.bitmask === 0) {
-    errors.bitmask = 'Please select at least one role';
-  }
-  return errors;
-};
-
-const CheckboxGroup = ({ label, name, options, values, setFieldValue }) => {
-  return (
-    <div className="flex flex-col">
-      <label className="text-lg font-medium mb-2">{label}</label>
-      <div role="group" aria-labelledby={name}>
-        {options.map(option => (
-          <label key={option.value} className="flex items-center mb-2">
-            <Field
-              type="checkbox"
-              name={name}
-              value={option.value}
-              checked={(option.value & values[name]) !== 0}
-              onChange={(event) => {
-                const newValue = event.target.checked
-                  ? values[name] | option.value
-                  : values[name] & ~option.value;
-                setFieldValue(name, newValue);
-              }}
-              className="mr-2"
-            />
-            <span className="text-sm">{option.label}</span>
-          </label>
-        ))}
-      </div>
-      <ErrorMessage name={name} component="div" className="text-red-500 mt-2" />
-    </div>
-  );
-};
-
-export default function Page() {
-  const [bitmaskValue, setBitmaskValue] = useState(null);
-
-  const handleSubmit = (values) => {
-    let binaryValue = "";
-    Object.keys(roles).forEach((role) => {
-      if ((values.bitmask & roles[role]) !== 0) {
-        binaryValue += "1";
-      } else {
-        binaryValue += "0";
+  useEffect(() => {
+    async function fetchAccounts() {
+      try {
+        const response = await axios.get(`https://server-social-benefits.vercel.app/searchAccounts?for=${query}`);
+        setAccounts(response.data);
+      } catch (error) {
+        console.error(error);
       }
-    });
-    setBitmaskValue(binaryValue);
-    console.log("Bitmask Value: ", binaryValue);
-  };
+    }
+
+    fetchAccounts();
+  }, [query]);
+
+  function handleInputChange(event) {
+    setQuery(event.target.value);
+  }
+
   return (
-    <div className="p-4">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={validate}>
-        {({ values, setFieldValue }) => (
-          <Form className="w-full max-w-sm">
-            <CheckboxGroup
-              label="Roles"
-              name="bitmask"
-              options={[
-                { label: 'Employee', value: roles.comptable },
-                { label: 'Responsable', value: roles.funder },
-                { label: 'Funder', value: roles.responsable },
-                { label: 'Comptable', value: roles.employee },
-              ]}
-              values={values}
-              setFieldValue={setFieldValue}
-            />
-            <button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
-      {bitmaskValue && <p className="mt-4">Selected roles: {bitmaskValue}</p>}
+    <div className="container mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Search Accounts</h1>
+      <div className="mb-4">
+        <label htmlFor="search" className="block font-medium mb-1">
+          Search:
+        </label>
+        <input
+          type="text"
+          id="search"
+          name="search"
+          className="border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 rounded-md w-full"
+          placeholder="Search accounts by email or name"
+          value={query}
+          onChange={handleInputChange}
+        />
+      </div>
+      <table className="table-auto w-full">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">ID</th>
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {accounts.map((account) => (
+            <tr key={account.id}>
+              <td className="border px-4 py-2">{account.id}</td>
+              <td className="border px-4 py-2">{account.name}</td>
+              <td className="border px-4 py-2">{account.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
