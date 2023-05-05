@@ -116,7 +116,7 @@ export default function Registration() {
       <div className='w-full max-w-[60rem]'>
       <p className='text-blue-700 font-bold flex-none text-2xl font-mono m-3'>Register An Employee :</p>
      <div className=' mt-5  grow flex justify-center items-center '>
-       <div className=' w-[80%] flex flex-col '>
+       <div className=' w-[95%] sm:w-[80%] flex flex-col '>
 
        <p className='text-red-600 font-bold text-sm mt-2 animate-pulse animate-bounce '>{error}</p>
 
