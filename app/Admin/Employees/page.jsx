@@ -95,7 +95,7 @@ export default function page() {
       {accounts.map((account, index) => (
         account.email!='admin@com' && <div key={account.id} className="w-full   rounded-lg hover:bg-blue-100 hover:scale-[101%] group/item mb-1 px-4 mx-4 relative  mt-1 items-center flex ">
               <p className="w-[3%] cursor-default text-sm font-bold  text-zinc-700 ">{index }</p>
-              <div className="w-[30%] flex items-center cursor-default text-sm font-bold relative h-16 text-zinc-700 ml-2"><img className="h-[70%] rounded-m aspect-square  mr-2 " src="https://static.vecteezy.com/system/resources/previews/001/840/618/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg" /> <div className="flex h-full justify-center flex-col "> <p>{account.name}</p> <p className="text-xs text-zinc-400">admin@com</p></div> </div>
+              <div className="w-[30%] flex items-center cursor-default text-sm font-bold relative h-16 text-zinc-700 ml-2"><img alt="https://static.vecteezy.com/system/resources/previews/001/840/618/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg" className="h-[70%]  object-cover rounded-md aspect-square  mr-2 " src={account.profileImageUrl} /> <div className="flex h-full justify-center flex-col "> <p>{account.name}</p> <p className="text-xs text-zinc-400">admin@com</p></div> </div>
               <p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700  ml-2">{account.job}</p>
               <p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700 ml-2">{account.phone}</p>
             <div className="absolute  invisible group-hover/item:visible flex justify-evenly top-1/2 -translate-y-1/2 right-[20%] h-[50%] aspect-[2/1]">
