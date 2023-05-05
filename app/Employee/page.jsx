@@ -15,7 +15,7 @@ export default function page() {
    const token = localStorage.getItem('token');
    const headers = { Authorization: `Bearer ${token}` };
  axios.get('https://server-social-benefits.vercel.app/verify', { headers, withCredentials: true })
-     .then((response) => { if(response.data.email==="admin@com") {router.push('/Admin') } else { console.log(response?.data?.email) ;setLoading(false) } 
+     .then((response) => { if(response.data.email==="admin@com") {router.push('/Admin/Employees') } else { console.log(response?.data?.email) ;setLoading(false) } 
      })
      .catch((error) => {console.error(error?.response?.data) ; router.push('/')
      });

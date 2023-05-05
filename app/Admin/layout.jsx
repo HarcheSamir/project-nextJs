@@ -22,7 +22,7 @@ export default function Admin({ children }) {
        const token = localStorage.getItem('token');
        const headers = { Authorization: `Bearer ${token}` };
      axios.get('https://server-social-benefits.vercel.app/verify', { headers, withCredentials: true })
-         .then((response) => { if(response.data.email==="admin@com") {setLoading(false)} else { router.push('/Employee') ; console.log(response?.data?.email)  } 
+         .then((response) => { if(response.data.email==="admin@com") {setLoading(false) ; router.push('/Admin/Employees')} else { router.push('/Employee') ; console.log(response?.data?.email)  } 
         })
          .catch((error) => {console.error(error?.response?.data) ; router.push('/')
          });
@@ -91,8 +91,8 @@ export default function Admin({ children }) {
  
   <div className="flex flex-col w-full bg-[#35465e]   mt-4 ">
       <Link href='/Admin/Employees'><div className='py-4 hover:bg-[#4b6485]  px-2 flex hover:scale-105  gap-2 items-center font-bold text-xs text-neutral-300'><BsFillPeopleFill className='h-3 w-3'/> Employees</div></Link>
-      <Link href='/Admin'><div className='py-4 hover:bg-[#4b6485]  px-2 flex hover:scale-105 gap-2 items-center font-bold text-xs text-neutral-300'><BsFillCollectionFill className='h-3 w-3'/> Programs</div></Link>
-      <Link href='/Admin'><div className='py-4 hover:bg-[#4b6485] px-2 flex hover:scale-105 gap-2 items-center font-bold text-xs text-neutral-300'><BsStars className='h-3 w-3'/> Ads</div></Link>
+      <Link href='/Admin/Programs'><div className='py-4 hover:bg-[#4b6485]  px-2 flex hover:scale-105 gap-2 items-center font-bold text-xs text-neutral-300'><BsFillCollectionFill className='h-3 w-3'/> Programs</div></Link>
+      <Link href='/Admin/Ads'><div className='py-4 hover:bg-[#4b6485] px-2 flex hover:scale-105 gap-2 items-center font-bold text-xs text-neutral-300'><BsStars className='h-3 w-3'/> Ads</div></Link>
 
     </div>
    
