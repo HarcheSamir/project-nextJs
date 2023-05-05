@@ -49,8 +49,8 @@ export default function page() {
      
      <div className="mb-4 mt-4 justify-between flex items-center w-full ">
 
-      <div>
-     <Link href='/Admin/Registration'><button className="bg-[#DC143C] hover:scale-110 hover:bg-blue-500  ml-4  text-xs font-bold text-white rounded-lg py-2 px-4 mt">Register New Account</button></Link>
+      <div >
+     <Link href='/Admin/Registration'><button className="bg-[#DC143C] mb-2 sm:mb-0 hover:scale-110 hover:bg-blue-500  ml-4  text-xs font-bold text-white rounded-lg py-2 px-4 mt">Register New Account</button></Link>
       <button className="border-[#DC143C] text-[#DC143C] hover:scale-110 hover:bg-[#2c3a51] hover:border-0 hover:text-white  ml-4 text-xs font-bold  border-2 rounded-lg py-2 px-4 mt">Terminate An Account</button>
       </div>
 
@@ -86,18 +86,18 @@ export default function page() {
 
       
       <div className="flex bg-white/95 z-10 items-cener px-4 pt-4 mx-4 py-2 border-b-[1px]   border-p-8 border-zinc-700 w-full sticky top-0">
-<p className="w-[3%] cursor-default text-sm font-bold  text-zinc-700 ">#</p>
-<p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700  ml-2">Name</p>
-<p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700  ml-2">Profession</p>
-<p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700 ml-2">Phone number</p>
+<p className="sm:w-[3%] w-[5%] cursor-default text-sm font-bold  text-zinc-700 ">#</p>
+<p className="sm:w-[30%] w-[50%]  cursor-default text-sm font-bold  text-zinc-700  ml-2">Name</p>
+<p className="sm:w-[30%] w-[50%] cursor-default text-sm font-bold  text-zinc-700  ml-2">Profession</p>
+<p className="sm:w-[30%] hidden sm:block  cursor-default text-sm font-bold  text-zinc-700 ml-2">Phone number</p>
       </div>
       <div className="flex flex-col w-full  ">
       {accounts .filter((account) => account.email !== 'admin@com').map((account, index) => (
          <div key={account.id} className="w-full   rounded-lg hover:bg-blue-200 hover:scale-[101%] group/item mb-1 px-4 mx-4 relative  mt-1 items-center flex ">
-              <p className="w-[3%] cursor-default text-sm font-bold  text-zinc-700 ">{index +1 }</p>
-              <div className="w-[30%] flex items-center cursor-default text-sm font-bold relative h-16 text-zinc-700 ml-2"><img alt="https://static.vecteezy.com/system/resources/previews/001/840/618/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg" className="h-[70%]  object-cover rounded-md aspect-square  mr-2 " src={account.profileImageUrl} /> <div className="flex h-full justify-center flex-col "> <p>{account.name}</p> <p className="text-xs text-zinc-400">{account.email}</p></div> </div>
-              <p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700  ml-2">{account.job}</p>
-              <p className="w-[30%] cursor-default text-sm font-bold  text-zinc-700 ml-2">{account.phone}</p>
+              <p className="sm:w-[3%] w-[5%] cursor-default text-sm font-bold  text-zinc-700 ">{index +1 }</p>
+              <div className="sm:w-[30%] w-[50%] flex items-center cursor-default text-sm font-bold relative h-16 text-zinc-700 ml-2"><img alt="https://static.vecteezy.com/system/resources/previews/001/840/618/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg" className="h-[70%]  object-cover rounded-md aspect-square  mr-2 " src={account.profileImageUrl} /> <div className="flex h-full justify-center flex-col "> <p>{account.name}</p> <p className="text-xs text-zinc-400">{account.email}</p></div> </div>
+              <p className="sm:w-[30%] w-[50%] cursor-default text-sm font-bold  text-zinc-700  ml-2">{account.job}</p>
+              <p className="sm:w-[30%] hidden sm:block cursor-default text-sm font-bold  text-zinc-700 ml-2">{account.phone}</p>
             <div className="absolute  invisible group-hover/item:visible flex justify-evenly top-1/2 -translate-y-1/2 right-[20%] h-[50%] aspect-[2/1]">
               <AiFillEdit className="w-6 hover:scale-150 cursor-pointer h-6 text-green-500"/> 
               <AiFillDelete className="w-6 h-6 hover:scale-150 cursor-pointer text-red-500"/>
