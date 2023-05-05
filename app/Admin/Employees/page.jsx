@@ -60,7 +60,7 @@ export default function page() {
           type="text"
           id="search"
           name="search"
-          className="w-full duration-300 border-gray-300 rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:ring"
+          className="w-full  border-gray-300 rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:border-[1px] focus:outline-none "
           placeholder="Search accounts"
           value={query}
           onChange={handleInputChange}
